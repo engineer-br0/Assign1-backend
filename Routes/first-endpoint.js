@@ -2,7 +2,6 @@ const express = require("express");
 const firstEndpointRouter = express.Router();
 const FirstEndpointStudent = require("../models/firstStudentSchema");
 
-// Function to calculate percentage
 function calculatePercentage(obtainedMarks, totalMarks) {
   if (totalMarks === 0) return 0; // Avoid division by zero
   return (obtainedMarks / totalMarks) * 100;
@@ -11,7 +10,6 @@ function calculatePercentage(obtainedMarks, totalMarks) {
 firstEndpointRouter.post("/", async (req, res) => {
   const { name, age, gender, marks } = req.body;
 
-  // Data Validation
   if (!name || !age || !gender || !marks || !marks.physics || !marks.maths) {
     return res.status(400).json({ error: "Incomplete data provided" });
   }
@@ -43,7 +41,6 @@ firstEndpointRouter.post("/", async (req, res) => {
     return res.status(400).json({ error: "Invalid data format for marks" });
   }
 
-  // Calculate overall percentage
   const physicsPercentage = calculatePercentage(physics[0], physics[1]);
   const chemistryPercentage = chemistry
     ? calculatePercentage(chemistry[0], chemistry[1])

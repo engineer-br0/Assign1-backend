@@ -3,7 +3,7 @@ const secondEndpointStudents = require("../models/secondStudentSchema");
 const secondEndpointRouter = express.Router();
 
 function calculatePercentage(obtainedMarks, totalMarks) {
-  if (totalMarks === 0) return 0; // Avoid division by zero
+  if (totalMarks === 0) return 0;
   return (obtainedMarks / totalMarks) * 100;
 }
 
@@ -39,7 +39,6 @@ secondEndpointRouter.post("/", async (req, res) => {
       .json({ error: "Invalid data format for subjects or marks" });
   }
 
-  // Calculate overall percentage
   const physicsIndex = subjects.indexOf("physics");
   const mathsIndex = subjects.indexOf("maths");
   const chemistryIndex = subjects.indexOf("chemistry");
@@ -69,7 +68,6 @@ secondEndpointRouter.post("/", async (req, res) => {
   });
 
   if (existingStudent) {
-    // Update the existing document
     const upload = await secondEndpointStudents.findOneAndUpdate({
       first_name,
       last_name,

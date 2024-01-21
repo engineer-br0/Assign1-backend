@@ -8,22 +8,13 @@ const connection = require("./database/connect");
 dotenv.config();
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT;
 connection();
 
 app.use(bodyParser.json());
 app.use("/first-endpoint", firstEndpointRouter);
 app.use("/second-endpoint", secondEndpointRouter);
 app.use("/get-endpoint", getEndpointRouter);
-
-// Store student records
-const studentRecords = [];
-
-// FIRST ENDPOINT
-
-// SECOND ENDPOINT
-
-// GET endpoint
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
